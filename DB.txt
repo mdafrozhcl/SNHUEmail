@@ -1,0 +1,26 @@
+CREATE TABLE IF NOT EXISTS `mydb`.`snhumail` (
+  `username` VARCHAR(255) NOT NULL,
+  `fromuser` VARCHAR(255) NOT NULL,
+  `subject` VARCHAR(50) NULL DEFAULT NULL,
+  `msg` VARCHAR(255) NULL DEFAULT NULL,
+  `type` VARCHAR(10) NULL DEFAULT NULL,
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  INDEX `username_idx` (`username` ASC, `fromuser` ASC),
+  INDEX `username` (`fromuser` ASC),
+  INDEX `id` (`id` ASC),
+  CONSTRAINT `username`
+    FOREIGN KEY (`fromuser`)
+    REFERENCES `mydb`.`users` (`username`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 14
+DEFAULT CHARACTER SET = utf8
+
+
+CREATE TABLE IF NOT EXISTS `mydb`.`users` (
+  `username` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(18) NULL DEFAULT NULL,
+  PRIMARY KEY (`username`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
